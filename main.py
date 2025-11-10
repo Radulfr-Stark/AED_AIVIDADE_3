@@ -1,28 +1,33 @@
 from modulos import *
 
-lista = preencher_lista(3)
+print('\nPreenchendo a lista mínima de 10 palavras para o sorteio...\n')
+lista = preencher_lista(10)
+print('Mínimo da lista já foi preenchido.')
+
+continuar = input('Digite "SIM" e pressione [ENTER] se quiser inserir mais palavras para o sorterio: ').strip().upper()
+while continuar == 'SIM':
+    lista = preencher_lista(1)
+    continuar = input('Digite "SIM" e pressione [ENTER] se quiser inserir mais palavras para o sorterio: ').strip().upper()
+
 palavra_sorteada = lista[sortear_posicao(lista)]
 palavra_embaralhada = embaralhar_palavra(palavra_sorteada)
 
 while palavra_sorteada == palavra_embaralhada: #loop que garante que a palavra embaralhada não será igual à sua grafia correta
     palavra_embaralhada = embaralhar_palavra(palavra_sorteada)
 
-condador_turnos = 1
+contador_turnos = 1
+resultado_turno = False
 
-while condador_turnos <= 7:
-    print(f'\nComeçando o {condador_turnos}º turno...\n\nDescubra/desembaralhe a palavra [{palavra_embaralhada}]')
-    resultado = jogar_turno(palavra_sorteada)
-    condador_turnos += 1
+while contador_turnos <= 7:
+    print(f'\nComeçando o {contador_turnos}º turno...\n\nDescubra/desembaralhe a palavra [{palavra_embaralhada}]')
+    resultado_turno = jogar_turno(palavra_sorteada)
+    contador_turnos += 1
 
-    if resultado == True:
-        break
+    if resultado_turno == True:
+        print(f'\nPARABÉNS, você conseguiu identificar a palavra embaralhada [{palavra_embaralhada}] revelando a palavra [{palavra_sorteada}]\n') #mensagem de fim de jogo: VENCEU (GOOD ENDING)
+        raise SystemExit
     else:
-        print(f'Negativo, sua opção não desembaralhou: {palavra_embaralhada}\n\nUma dica: use maiúsculas!\n')
+        print(f'Negativo, sua opção não desembaralhou: {palavra_embaralhada}\n')
         continue
 
-
-
-# print(palavra_embaralhada)
-print('Descobriu a palavra sorteada ->', palavra_sorteada)
-# print(palavra_sorteada)
-
+print(f'Infelizmente seus turnos acabaram, mais sorte na próxima vez!') #mensagem de fim de jogo: PERDEU (BAD ENDING)
