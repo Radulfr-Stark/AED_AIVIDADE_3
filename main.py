@@ -1,6 +1,16 @@
 from modulos import *
 
-print('\nPreenchendo a lista mínima de 10 palavras para o sorteio...\n')
+print('''
+##################################################
+----Bem vindo ao jogo DESEMBARALHE O SORTEADO!----
+##################################################
+    O jogo vai preencher uma lista, com palavras
+que você escolher e então sortear uma delas, você 
+terá que descobri-la antes que seus turnos acabem!
+      
+----------------------------------------BOA SORTE!
+''')
+
 lista = preencher_lista(10)
 print('Mínimo da lista já foi preenchido.')
 
